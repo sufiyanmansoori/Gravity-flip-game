@@ -1,0 +1,17 @@
+{
+  "easy": {
+    "speedMultiplier": 1.0,
+    "spawnRate": 1.2,
+    "coinBonus": 1.0
+  },
+  "normal": {
+    "speedMultiplier": 1.25,
+    "spawnRate": 1.0,
+    "coinBonus": 1.2
+  },
+  "hard": {
+    "speedMultiplier": 1.5,
+    "spawnRate": 0.8,
+    "coinBonus": 1.4
+  }
+}

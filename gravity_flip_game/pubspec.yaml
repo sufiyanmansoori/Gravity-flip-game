@@ -1,0 +1,104 @@
+name: gravity_flip_game
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.13.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # State Management
+  flutter_bloc: 9.1.1
+  riverpod: ^2.5.0
+
+  # Routing
+  go_router: ^14.0.0
+
+  # Data & Storage
+  hive: ^2.2.0
+  hive_flutter: ^1.1.0
+  shared_preferences: ^2.2.0
+
+  # Networking
+  dio: ^5.3.0
+  retrofit: ^4.0.0
+
+  # Serialization
+  freezed_annotation: ^2.4.0
+
+  # DI
+  get_it: ^7.6.0
+
+  # Logging
+  logger: ^2.0.0
+
+  # Audio
+  audioplayers: ^5.2.0
+
+  # Analytics
+  firebase_analytics: ^10.7.0
+  firebase_crashlytics: ^3.5.0
+
+  # Ads
+  google_mobile_ads: ^3.0.0
+
+  # Localization
+  easy_localization: ^3.0.0
+
+  # Animations
+  lottie: ^3.0.0
+
+  # Game Development
+  flame: ^1.10.0
+
+  # Existing project utilities
+  cupertino_icons: ^1.0.8
+  flame_audio: ^2.10.0
+  equatable: ^2.0.7
+  http: ^1.2.2
+  path_provider: ^2.1.5
+  flutter_local_notifications: ^22.3.1
+  connectivity_plus: ^6.1.4
+  device_info_plus: ^11.1.0
+  package_info_plus: ^8.3.0
+  permission_handler: ^11.0.0
+  workmanager: ^0.5.0
+  web_socket_channel: ^3.0.0
+  timezone: ^0.11.1
+
+# --- essential dev dependencies ---
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  mockito: ^5.4.0
+  build_runner: ^2.4.0
+  json_serializable: ^6.7.0
+  freezed: ^2.4.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/icon.svg
+    - assets/images/
+    - assets/audio/
+    - assets/animations/
+    - assets/localization/
+    - assets/levels/
+    - assets/fonts/
+
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Regular.ttf
+        - asset: assets/fonts/Roboto-Bold.ttf
+          weight: 700
+    - family: CustomGameFont
+      fonts:
+        - asset: assets/fonts/CustomGameFont.ttf

@@ -1,0 +1,7 @@
+{
+  "gravity": 1800,
+  "jumpVelocity": -620,
+  "drag": 0,
+  "airResistance": 0,
+  "maxFallSpeed": 1400
+}

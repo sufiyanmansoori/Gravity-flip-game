@@ -1,0 +1,1 @@
+"""Game shop catalog, carts, inventory, and orders."""

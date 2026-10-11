@@ -1,0 +1,3 @@
+{% extends 'base/base.html' %}
+{% block title %}Invoice {{ invoice_number }}{% endblock %}
+{% block content %}<h1>Invoice {{ invoice_number }}</h1><p>Total: {{ total }} {{ currency }}</p>{% endblock %}

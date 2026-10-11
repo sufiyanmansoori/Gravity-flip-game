@@ -1,0 +1,15 @@
+# Docker ignore for project root
+**/__pycache__
+**/.pytest_cache
+**/.venv
+**/.venv-*
+**/node_modules
+**/build
+**/dist
+**/*.pyc
+**/.DS_Store
+.env
+*.env
+.idea
+.vscode
+*.log

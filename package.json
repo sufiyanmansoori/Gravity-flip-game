@@ -1,0 +1,10 @@
+{
+  "name": "gravity-flip-fullstack",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "concurrently --kill-others-on-fail \"cd gravity_flip_backend && python manage.py runserver\" \"cd gravity_flip_game && flutter run -d chrome\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}

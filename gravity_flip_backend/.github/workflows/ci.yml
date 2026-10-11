@@ -1,0 +1,28 @@
+name: CI
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: gravity_flip_db
+        ports:
+          - '5432:5432'
+        options: '--health-cmd "pg_isready -U postgres" --health-interval 10s --health-timeout 5s --health-retries 5'
+    env:
+      DJANGO_SETTINGS_MODULE: config.settings.dev
+      SECRET_KEY: ci-secret
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: gravity_flip_db
+      POSTGRES_HOST: localhost
+      REDIS_URL: redis://localhost:6379/0
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12', cache: pip}
+      - run: pip install -r requirements-dev.txt
+      - run: python manage.py check
+      - run: python manage.py test

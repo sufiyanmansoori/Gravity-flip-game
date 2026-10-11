@@ -1,0 +1,13 @@
+{
+  "appName": "Gravity Flip",
+  "menu": {
+    "play": "खेलें",
+    "settings": "सेटिंग्स",
+    "leaderboard": "लीडरबोर्ड"
+  },
+  "game": {
+    "score": "स्कोर",
+    "best": "सबसे अच्छा",
+    "level": "लेवल"
+  }
+}

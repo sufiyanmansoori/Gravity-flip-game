@@ -1,0 +1,16 @@
+name: CD
+on:
+  push:
+    tags: ['v*']
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/login-action@v3
+        with: {registry: '${{ vars.CONTAINER_REGISTRY }}', username: '${{ secrets.REGISTRY_USERNAME }}', password: '${{ secrets.REGISTRY_PASSWORD }}'}
+      - uses: docker/build-push-action@v6
+        with: {context: ., file: docker/Dockerfile, push: true, tags: '${{ vars.CONTAINER_REGISTRY }}/${{ vars.IMAGE_NAME }}:${{ github.ref_name }}'}
+      - name: Deploy
+        run: echo "Configure the production deployment command for your platform."

@@ -1,0 +1,18 @@
+{
+  "number": 2,
+  "name": "Skyline Switch",
+  "difficulty": "normal",
+  "speed": 220,
+  "gravity": 1900,
+  "baseScore": 1800,
+  "obstacles": [
+    {"x": 140, "y": 280, "width": 108, "height": 18},
+    {"x": 350, "y": 200, "width": 120, "height": 18},
+    {"x": 550, "y": 150, "width": 90, "height": 18}
+  ],
+  "collectibles": [
+    {"x": 210, "y": 120, "value": 80},
+    {"x": 430, "y": 140, "value": 100},
+    {"x": 610, "y": 100, "value": 120}
+  ]
+}

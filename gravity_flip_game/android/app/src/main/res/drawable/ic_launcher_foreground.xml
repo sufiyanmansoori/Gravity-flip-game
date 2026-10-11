@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+  <!-- Neon circular badge foreground -->
+  <group>
+    <path
+      android:fillColor="#9B8CFF"
+      android:pathData="M54,12 A42,42 0 1,1 53.999,12z" />
+    <path
+      android:fillColor="#00D2FF"
+      android:pathData="M54,22 A32,32 0 1,1 53.999,22z"
+      android:fillAlpha="0.6" />
+    <!-- Simple 'G' like shape -->
+    <path
+      android:fillColor="#FFFFFF"
+      android:pathData="M64,40 C56,40 48,46 48,56 C48,66 56,72 64,72 C70,72 76,70 80,66 L76,60 C72,64 68,66 64,66 C58,66 54,62 54,56 C54,50 58,46 64,46 C68,46 72,47 76,50 L64,40z"/>
+  </group>
+</vector>

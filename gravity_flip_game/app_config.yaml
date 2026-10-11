@@ -1,0 +1,26 @@
+app:
+  name: Gravity Flip
+  displayName: Gravity Flip
+  environment: development
+  version: 1.0.0
+  buildNumber: 1
+
+api:
+  baseUrl: https://api.gravityflipgame.com
+  timeoutSeconds: 30
+
+features:
+  analytics: false
+  crashReporting: false
+  notifications: true
+  audio: true
+  ads: false
+
+ui:
+  textScaleFactor: 1.0
+  themeMode: dark
+
+game:
+  defaultLevel: 1
+  maxLives: 3
+  startingScore: 0

@@ -1,0 +1,9 @@
+name: Build
+on: [push, pull_request]
+jobs:
+  image:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/build-push-action@v6
+        with: {context: ., file: docker/Dockerfile, push: false, tags: gravity-flip-backend:ci}

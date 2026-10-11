@@ -1,0 +1,16 @@
+{
+  "number": 1,
+  "name": "Neon Drift",
+  "difficulty": "easy",
+  "speed": 180,
+  "gravity": 1800,
+  "baseScore": 1000,
+  "obstacles": [
+    {"x": 120, "y": 260, "width": 110, "height": 18},
+    {"x": 320, "y": 180, "width": 130, "height": 18}
+  ],
+  "collectibles": [
+    {"x": 180, "y": 150, "value": 50},
+    {"x": 420, "y": 120, "value": 70}
+  ]
+}

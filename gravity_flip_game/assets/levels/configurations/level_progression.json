@@ -1,0 +1,8 @@
+{
+  "levels": [
+    { "number": 1, "unlockScore": 0 },
+    { "number": 2, "unlockScore": 1200 },
+    { "number": 3, "unlockScore": 2500 },
+    { "number": 4, "unlockScore": 4200 }
+  ]
+}

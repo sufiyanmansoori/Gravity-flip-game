@@ -1,0 +1,2926 @@
+openapi: 3.0.3
+info:
+  title: Gravity Flip Game API
+  version: 1.0.0
+  description: Production API for the Gravity Flip Game backend
+paths:
+  /api/v1/achievements/:
+    get:
+      operationId: api_v1_achievements_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Achievement'
+          description: ''
+    post:
+      operationId: api_v1_achievements_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Achievement'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Achievement'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Achievement'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Achievement'
+          description: ''
+  /api/v1/achievements/{id}/:
+    get:
+      operationId: api_v1_achievements_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this achievement.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Achievement'
+          description: ''
+    put:
+      operationId: api_v1_achievements_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this achievement.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Achievement'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Achievement'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Achievement'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Achievement'
+          description: ''
+    patch:
+      operationId: api_v1_achievements_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this achievement.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedAchievement'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedAchievement'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedAchievement'
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Achievement'
+          description: ''
+    delete:
+      operationId: api_v1_achievements_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this achievement.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/v1/achievements/mine/:
+    get:
+      operationId: api_v1_achievements_mine_retrieve
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Achievement'
+          description: ''
+  /api/v1/achievements/sync/:
+    post:
+      operationId: api_v1_achievements_sync_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Achievement'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Achievement'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Achievement'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Achievement'
+          description: ''
+  /api/v1/achievements/unlock/:
+    post:
+      operationId: api_v1_achievements_unlock_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Achievement'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Achievement'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Achievement'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Achievement'
+          description: ''
+  /api/v1/admin/control/{id}/activate/:
+    post:
+      operationId: api_v1_admin_control_activate_create
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/admin/control/{id}/deactivate/:
+    post:
+      operationId: api_v1_admin_control_deactivate_create
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/admin/control/dashboard/:
+    get:
+      operationId: api_v1_admin_control_dashboard_retrieve
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/admin/control/users/:
+    get:
+      operationId: api_v1_admin_control_users_retrieve
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/admin/moderation/:
+    get:
+      operationId: api_v1_admin_moderation_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Moderation'
+          description: ''
+    post:
+      operationId: api_v1_admin_moderation_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Moderation'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Moderation'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Moderation'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Moderation'
+          description: ''
+  /api/v1/admin/moderation/{id}/:
+    get:
+      operationId: api_v1_admin_moderation_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this moderation case.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Moderation'
+          description: ''
+    patch:
+      operationId: api_v1_admin_moderation_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this moderation case.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedModeration'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedModeration'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedModeration'
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Moderation'
+          description: ''
+  /api/v1/admin/moderation/{id}/decide/:
+    post:
+      operationId: api_v1_admin_moderation_decide_create
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this moderation case.
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Moderation'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Moderation'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Moderation'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Moderation'
+          description: ''
+  /api/v1/admin/system/config/:
+    get:
+      operationId: api_v1_admin_system_config_retrieve
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/admin/system/set_config/:
+    post:
+      operationId: api_v1_admin_system_set_config_create
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+    put:
+      operationId: api_v1_admin_system_set_config_update
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/analytics/aggregate/:
+    post:
+      operationId: api_v1_analytics_aggregate_create
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/analytics/events/:
+    post:
+      operationId: api_v1_analytics_events_create
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/analytics/funnel/:
+    get:
+      operationId: api_v1_analytics_funnel_retrieve
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/analytics/overview/:
+    get:
+      operationId: api_v1_analytics_overview_retrieve
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/analytics/report/:
+    get:
+      operationId: api_v1_analytics_report_retrieve
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/auth/login/:
+    post:
+      operationId: api_v1_auth_login_create
+      tags:
+      - api
+      security:
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/v1/auth/me/:
+    get:
+      operationId: api_v1_auth_me_retrieve
+      tags:
+      - api
+      responses:
+        '200':
+          description: No response body
+  /api/v1/auth/refresh/:
+    post:
+      operationId: api_v1_auth_refresh_create
+      tags:
+      - api
+      security:
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/v1/auth/register/:
+    post:
+      operationId: api_v1_auth_register_create
+      tags:
+      - api
+      security:
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/v1/game/:
+    post:
+      operationId: api_v1_game_create
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '201':
+          description: No response body
+  /api/v1/game/{id}/:
+    get:
+      operationId: api_v1_game_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this game.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+    patch:
+      operationId: api_v1_game_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this game.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/game/{id}/game_action/:
+    post:
+      operationId: api_v1_game_game_action_create
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this game.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/game/{id}/snapshot/:
+    post:
+      operationId: api_v1_game_snapshot_create
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this game.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/games/achievements/:
+    get:
+      operationId: api_v1_games_achievements_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Achievement'
+          description: ''
+  /api/v1/games/leaderboard/:
+    get:
+      operationId: api_v1_games_leaderboard_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LeaderboardEntry'
+          description: ''
+  /api/v1/games/levels/:
+    get:
+      operationId: api_v1_games_levels_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GameLevel'
+          description: ''
+    post:
+      operationId: api_v1_games_levels_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GameLevel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/GameLevel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/GameLevel'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameLevel'
+          description: ''
+  /api/v1/games/levels/{id}/:
+    get:
+      operationId: api_v1_games_levels_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameLevel'
+          description: ''
+    put:
+      operationId: api_v1_games_levels_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GameLevel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/GameLevel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/GameLevel'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameLevel'
+          description: ''
+    patch:
+      operationId: api_v1_games_levels_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedGameLevel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedGameLevel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedGameLevel'
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameLevel'
+          description: ''
+    delete:
+      operationId: api_v1_games_levels_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/v1/games/my-achievements/:
+    get:
+      operationId: api_v1_games_my_achievements_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserAchievement'
+          description: ''
+  /api/v1/games/sessions/:
+    get:
+      operationId: api_v1_games_sessions_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GameSession'
+          description: ''
+    post:
+      operationId: api_v1_games_sessions_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GameSession'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/GameSession'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/GameSession'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameSession'
+          description: ''
+  /api/v1/games/sessions/{id}/:
+    get:
+      operationId: api_v1_games_sessions_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameSession'
+          description: ''
+    put:
+      operationId: api_v1_games_sessions_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GameSession'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/GameSession'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/GameSession'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameSession'
+          description: ''
+    patch:
+      operationId: api_v1_games_sessions_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedGameSession'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedGameSession'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedGameSession'
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameSession'
+          description: ''
+  /api/v1/games/stats/:
+    get:
+      operationId: api_v1_games_stats_retrieve
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/v1/games/submit-score/:
+    post:
+      operationId: api_v1_games_submit_score_create
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/leaderboards/attempts/:
+    get:
+      operationId: api_v1_leaderboards_attempts_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ChallengeAttempt'
+          description: ''
+    post:
+      operationId: api_v1_leaderboards_attempts_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChallengeAttempt'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/ChallengeAttempt'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/ChallengeAttempt'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChallengeAttempt'
+          description: ''
+  /api/v1/leaderboards/daily/:
+    get:
+      operationId: api_v1_leaderboards_daily_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DailyChallenge'
+          description: ''
+  /api/v1/leaderboards/submit/:
+    post:
+      operationId: api_v1_leaderboards_submit_create
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/levels/:
+    get:
+      operationId: api_v1_levels_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UpdateLevel'
+          description: ''
+    post:
+      operationId: api_v1_levels_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateLevel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CreateLevel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CreateLevel'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateLevel'
+          description: ''
+  /api/v1/levels/{slug}/:
+    get:
+      operationId: api_v1_levels_retrieve
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateLevel'
+          description: ''
+    put:
+      operationId: api_v1_levels_update
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateLevel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UpdateLevel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UpdateLevel'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateLevel'
+          description: ''
+    patch:
+      operationId: api_v1_levels_partial_update
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedUpdateLevel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedUpdateLevel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedUpdateLevel'
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateLevel'
+          description: ''
+    delete:
+      operationId: api_v1_levels_destroy
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/v1/levels/{slug}/archive/:
+    post:
+      operationId: api_v1_levels_archive_create
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateLevel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UpdateLevel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UpdateLevel'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateLevel'
+          description: ''
+  /api/v1/levels/{slug}/clone/:
+    post:
+      operationId: api_v1_levels_clone_create
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateLevel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UpdateLevel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UpdateLevel'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateLevel'
+          description: ''
+  /api/v1/levels/{slug}/publish/:
+    post:
+      operationId: api_v1_levels_publish_create
+      parameters:
+      - in: path
+        name: slug
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateLevel'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/UpdateLevel'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UpdateLevel'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateLevel'
+          description: ''
+  /api/v1/notification/:
+    get:
+      operationId: api_v1_notification_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Notification'
+          description: ''
+  /api/v1/notification/{id}/read/:
+    post:
+      operationId: api_v1_notification_read_create
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Notification'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Notification'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Notification'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notification'
+          description: ''
+  /api/v1/notification/read_all/:
+    post:
+      operationId: api_v1_notification_read_all_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Notification'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Notification'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Notification'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notification'
+          description: ''
+  /api/v1/notifications/:
+    get:
+      operationId: api_v1_notifications_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Notification'
+          description: ''
+    post:
+      operationId: api_v1_notifications_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Notification'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Notification'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Notification'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notification'
+          description: ''
+  /api/v1/notifications/{id}/:
+    get:
+      operationId: api_v1_notifications_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notification'
+          description: ''
+    put:
+      operationId: api_v1_notifications_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Notification'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Notification'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Notification'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notification'
+          description: ''
+    patch:
+      operationId: api_v1_notifications_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedNotification'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedNotification'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedNotification'
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Notification'
+          description: ''
+    delete:
+      operationId: api_v1_notifications_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/v1/payment/:
+    get:
+      operationId: api_v1_payment_retrieve
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+    post:
+      operationId: api_v1_payment_create
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '201':
+          description: No response body
+  /api/v1/payment/{id}/refund/:
+    post:
+      operationId: api_v1_payment_refund_create
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+          format: uuid
+        description: A UUID string identifying this payment.
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/payment/subscriptions/:
+    get:
+      operationId: api_v1_payment_subscriptions_retrieve
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/payments/checkout/:
+    post:
+      operationId: api_v1_payments_checkout_create
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/payments/plans/:
+    get:
+      operationId: api_v1_payments_plans_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SubscriptionPlan'
+          description: ''
+  /api/v1/payments/subscriptions/:
+    get:
+      operationId: api_v1_payments_subscriptions_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserSubscription'
+          description: ''
+  /api/v1/payments/transactions/:
+    get:
+      operationId: api_v1_payments_transactions_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PaymentTransaction'
+          description: ''
+    post:
+      operationId: api_v1_payments_transactions_create
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentTransaction'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PaymentTransaction'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PaymentTransaction'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentTransaction'
+          description: ''
+  /api/v1/scores/:
+    get:
+      operationId: api_v1_scores_retrieve
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+    post:
+      operationId: api_v1_scores_create
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '201':
+          description: No response body
+  /api/v1/scores/leaderboard/:
+    get:
+      operationId: api_v1_scores_leaderboard_retrieve
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/v1/scores/stats/:
+    get:
+      operationId: api_v1_scores_stats_retrieve
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/shop/add_to_cart/:
+    post:
+      operationId: api_v1_shop_add_to_cart_create
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/shop/cart/:
+    get:
+      operationId: api_v1_shop_cart_retrieve
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/shop/checkout/:
+    post:
+      operationId: api_v1_shop_checkout_create
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/shop/orders/:
+    get:
+      operationId: api_v1_shop_orders_retrieve
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/shop/products/:
+    get:
+      operationId: api_v1_shop_products_retrieve
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/v1/shop/products/create/:
+    post:
+      operationId: api_v1_shop_products_create_create
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/user/me/:
+    get:
+      operationId: api_v1_user_me_retrieve
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+    patch:
+      operationId: api_v1_user_me_partial_update
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/user/stats/:
+    get:
+      operationId: api_v1_user_stats_retrieve
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/users/:
+    get:
+      operationId: api_v1_users_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+          description: ''
+  /api/v1/users/{id}/:
+    get:
+      operationId: api_v1_users_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    put:
+      operationId: api_v1_users_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+    patch:
+      operationId: api_v1_users_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedUser'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedUser'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedUser'
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+          description: ''
+  /api/v1/users/me/:
+    get:
+      operationId: api_v1_users_me_retrieve
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/v1/users/profile/{id}/:
+    get:
+      operationId: api_v1_users_profile_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+          description: ''
+  /api/v1/users/sessions/:
+    get:
+      operationId: api_v1_users_sessions_list
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserSession'
+          description: ''
+components:
+  schemas:
+    Achievement:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        code:
+          type: string
+          maxLength: 80
+          pattern: ^[-a-zA-Z0-9_]+$
+        name:
+          type: string
+          maxLength: 120
+        description:
+          type: string
+        icon:
+          type: string
+          maxLength: 255
+        points:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        criteria: {}
+        is_hidden:
+          type: boolean
+        rewards:
+          type: array
+          items:
+            $ref: '#/components/schemas/AchievementReward'
+          readOnly: true
+        unlocked:
+          type: string
+          readOnly: true
+      required:
+      - code
+      - id
+      - name
+      - rewards
+      - unlocked
+    AchievementReward:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        reward_type:
+          $ref: '#/components/schemas/RewardTypeEnum'
+        amount:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        reference:
+          type: string
+          maxLength: 120
+        payload: {}
+      required:
+      - id
+      - reward_type
+    ActionEnum:
+      enum:
+      - none
+      - warn
+      - suspend
+      - ban
+      type: string
+      description: |-
+        * `none` - None
+        * `warn` - Warn
+        * `suspend` - Suspend
+        * `ban` - Ban
+    ChallengeAttempt:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        user:
+          type: integer
+        challenge:
+          type: integer
+        score:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        completed:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - challenge
+      - created_at
+      - id
+      - user
+    ChannelEnum:
+      enum:
+      - in_app
+      - email
+      - sms
+      - push
+      type: string
+      description: |-
+        * `in_app` - In app
+        * `email` - Email
+        * `sms` - SMS
+        * `push` - Push
+    CreateLevel:
+      type: object
+      properties:
+        slug:
+          type: string
+          maxLength: 100
+          pattern: ^[-a-zA-Z0-9_]+$
+        title:
+          type: string
+          maxLength: 150
+        description:
+          type: string
+          default: ''
+        difficulty:
+          type: integer
+        seed:
+          type: integer
+          minimum: 0
+          default: 0
+        definition: {}
+        configuration:
+          $ref: '#/components/schemas/LevelConfig'
+      required:
+      - difficulty
+      - slug
+      - title
+    DailyChallenge:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          maxLength: 255
+        description:
+          type: string
+        target_score:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        expires_at:
+          type: string
+          format: date-time
+        is_active:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - expires_at
+      - id
+      - title
+    GameLevel:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        slug:
+          type: string
+          maxLength: 50
+          pattern: ^[-a-zA-Z0-9_]+$
+        difficulty:
+          type: string
+          maxLength: 50
+        gravity_direction:
+          type: string
+          maxLength: 10
+        target_score:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        is_active:
+          type: boolean
+        metadata: {}
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - id
+      - name
+      - slug
+      - updated_at
+    GameSession:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        user:
+          type: integer
+        level:
+          type: integer
+          nullable: true
+        score:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        status:
+          type: string
+          maxLength: 30
+        duration_seconds:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        attempts:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        best_score:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        final_state: {}
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - id
+      - updated_at
+      - user
+    LeaderboardEntry:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        user:
+          type: integer
+        level:
+          type: integer
+        score:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        rank:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - id
+      - level
+      - user
+    LevelConfig:
+      type: object
+      properties:
+        world_width:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        world_height:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        starting_gravity:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        target_score:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        max_lives:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        physics: {}
+        rules: {}
+    LevelEnum:
+      enum:
+      - info
+      - success
+      - warning
+      - error
+      type: string
+      description: |-
+        * `info` - Info
+        * `success` - Success
+        * `warning` - Warning
+        * `error` - Error
+    Moderation:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        subject:
+          type: integer
+        reporter:
+          type: integer
+          readOnly: true
+          nullable: true
+        assigned_to:
+          type: integer
+          nullable: true
+        reason:
+          type: string
+          maxLength: 255
+        details:
+          type: string
+        status:
+          $ref: '#/components/schemas/ModerationStatusEnum'
+        action:
+          $ref: '#/components/schemas/ActionEnum'
+        resolution:
+          type: string
+        metadata: {}
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - id
+      - reason
+      - reporter
+      - subject
+      - updated_at
+    ModerationStatusEnum:
+      enum:
+      - open
+      - reviewing
+      - resolved
+      - dismissed
+      type: string
+      description: |-
+        * `open` - Open
+        * `reviewing` - Reviewing
+        * `resolved` - Resolved
+        * `dismissed` - Dismissed
+    Notification:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        template:
+          allOf:
+          - $ref: '#/components/schemas/NotificationTemplate'
+          readOnly: true
+        channel:
+          $ref: '#/components/schemas/ChannelEnum'
+        category:
+          type: string
+          maxLength: 32
+        subject:
+          type: string
+          maxLength: 255
+        body:
+          type: string
+        status:
+          allOf:
+          - $ref: '#/components/schemas/NotificationStatusEnum'
+          readOnly: true
+        is_read:
+          type: boolean
+        metadata: {}
+        sent_at:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - body
+      - created_at
+      - id
+      - sent_at
+      - status
+      - template
+    NotificationStatusEnum:
+      enum:
+      - pending
+      - sent
+      - failed
+      - skipped
+      type: string
+      description: |-
+        * `pending` - Pending
+        * `sent` - Sent
+        * `failed` - Failed
+        * `skipped` - Skipped
+    NotificationTemplate:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        code:
+          type: string
+          maxLength: 100
+          pattern: ^[-a-zA-Z0-9_]+$
+        channel:
+          $ref: '#/components/schemas/ChannelEnum'
+        subject:
+          type: string
+          maxLength: 255
+        body:
+          type: string
+        is_active:
+          type: boolean
+        metadata: {}
+      required:
+      - body
+      - channel
+      - code
+      - id
+    PatchedAchievement:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        code:
+          type: string
+          maxLength: 80
+          pattern: ^[-a-zA-Z0-9_]+$
+        name:
+          type: string
+          maxLength: 120
+        description:
+          type: string
+        icon:
+          type: string
+          maxLength: 255
+        points:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        criteria: {}
+        is_hidden:
+          type: boolean
+        rewards:
+          type: array
+          items:
+            $ref: '#/components/schemas/AchievementReward'
+          readOnly: true
+        unlocked:
+          type: string
+          readOnly: true
+    PatchedGameLevel:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        slug:
+          type: string
+          maxLength: 50
+          pattern: ^[-a-zA-Z0-9_]+$
+        difficulty:
+          type: string
+          maxLength: 50
+        gravity_direction:
+          type: string
+          maxLength: 10
+        target_score:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        is_active:
+          type: boolean
+        metadata: {}
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+    PatchedGameSession:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        user:
+          type: integer
+        level:
+          type: integer
+          nullable: true
+        score:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        status:
+          type: string
+          maxLength: 30
+        duration_seconds:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        attempts:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        best_score:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        final_state: {}
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+    PatchedModeration:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        subject:
+          type: integer
+        reporter:
+          type: integer
+          readOnly: true
+          nullable: true
+        assigned_to:
+          type: integer
+          nullable: true
+        reason:
+          type: string
+          maxLength: 255
+        details:
+          type: string
+        status:
+          $ref: '#/components/schemas/ModerationStatusEnum'
+        action:
+          $ref: '#/components/schemas/ActionEnum'
+        resolution:
+          type: string
+        metadata: {}
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+    PatchedNotification:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        user:
+          type: integer
+        notification_type:
+          type: integer
+          nullable: true
+        title:
+          type: string
+          maxLength: 255
+        message:
+          type: string
+        level:
+          $ref: '#/components/schemas/LevelEnum'
+        is_read:
+          type: boolean
+        metadata: {}
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+    PatchedUpdateLevel:
+      type: object
+      properties:
+        title:
+          type: string
+          maxLength: 150
+        description:
+          type: string
+        difficulty:
+          type: integer
+        seed:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        definition: {}
+        configuration:
+          $ref: '#/components/schemas/LevelConfig'
+    PatchedUser:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 254
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        avatar_url:
+          type: string
+          format: uri
+          nullable: true
+          maxLength: 500
+        bio:
+          type: string
+        country:
+          type: string
+          maxLength: 100
+        is_verified:
+          type: boolean
+        is_premium:
+          type: boolean
+        date_joined:
+          type: string
+          format: date-time
+          readOnly: true
+        last_login:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+    PaymentTransaction:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        user:
+          type: integer
+        gateway:
+          type: integer
+          nullable: true
+        amount:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,10}(?:\.\d{0,2})?$
+        currency:
+          type: string
+          maxLength: 10
+        status:
+          $ref: '#/components/schemas/PaymentTransactionStatusEnum'
+        external_reference:
+          type: string
+          maxLength: 255
+        metadata: {}
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - id
+      - updated_at
+      - user
+    PaymentTransactionStatusEnum:
+      enum:
+      - pending
+      - paid
+      - failed
+      - refunded
+      type: string
+      description: |-
+        * `pending` - Pending
+        * `paid` - Paid
+        * `failed` - Failed
+        * `refunded` - Refunded
+    RewardTypeEnum:
+      enum:
+      - points
+      - xp
+      - cosmetic
+      - badge
+      type: string
+      description: |-
+        * `points` - Points
+        * `xp` - Experience
+        * `cosmetic` - Cosmetic
+        * `badge` - Badge
+    SubscriptionPlan:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 255
+        price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,10}(?:\.\d{0,2})?$
+        currency:
+          type: string
+          maxLength: 10
+        description:
+          type: string
+        stripe_product_id:
+          type: string
+          maxLength: 255
+        is_active:
+          type: boolean
+      required:
+      - id
+      - name
+      - price
+    UpdateLevel:
+      type: object
+      properties:
+        title:
+          type: string
+          maxLength: 150
+        description:
+          type: string
+        difficulty:
+          type: integer
+        seed:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        definition: {}
+        configuration:
+          $ref: '#/components/schemas/LevelConfig'
+      required:
+      - difficulty
+      - title
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
+            only.
+          pattern: ^[\w.@+-]+$
+          maxLength: 150
+        email:
+          type: string
+          format: email
+          title: Email address
+          maxLength: 254
+        first_name:
+          type: string
+          maxLength: 150
+        last_name:
+          type: string
+          maxLength: 150
+        avatar_url:
+          type: string
+          format: uri
+          nullable: true
+          maxLength: 500
+        bio:
+          type: string
+        country:
+          type: string
+          maxLength: 100
+        is_verified:
+          type: boolean
+        is_premium:
+          type: boolean
+        date_joined:
+          type: string
+          format: date-time
+          readOnly: true
+        last_login:
+          type: string
+          format: date-time
+          readOnly: true
+          nullable: true
+      required:
+      - date_joined
+      - id
+      - last_login
+      - username
+    UserAchievement:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        user:
+          type: integer
+        achievement:
+          type: integer
+        unlocked_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - achievement
+      - id
+      - unlocked_at
+      - user
+    UserProfile:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        user:
+          allOf:
+          - $ref: '#/components/schemas/User'
+          readOnly: true
+        total_games_played:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        total_wins:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        best_score:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+        favorite_level:
+          type: string
+          maxLength: 255
+      required:
+      - id
+      - user
+    UserSession:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        user:
+          type: integer
+        device_name:
+          type: string
+          maxLength: 255
+        ip_address:
+          type: string
+          nullable: true
+        user_agent:
+          type: string
+        is_active:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - id
+      - user
+    UserSubscription:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        user:
+          type: integer
+        plan:
+          type: integer
+        status:
+          type: string
+          maxLength: 20
+        starts_at:
+          type: string
+          format: date-time
+          readOnly: true
+        ends_at:
+          type: string
+          format: date-time
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - created_at
+      - id
+      - plan
+      - starts_at
+      - user
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Token-based authentication with required prefix "Token"

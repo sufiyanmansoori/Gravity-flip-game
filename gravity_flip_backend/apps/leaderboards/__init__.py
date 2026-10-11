@@ -1,0 +1,1 @@
+"""Leaderboards application package."""

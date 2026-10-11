@@ -1,0 +1,1 @@
+"""Authoritative score recording and leaderboard application."""
