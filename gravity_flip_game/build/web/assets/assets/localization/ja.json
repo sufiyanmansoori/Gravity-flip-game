@@ -1,0 +1,13 @@
+{
+  "appName": "Gravity Flip",
+  "menu": {
+    "play": "プレイ",
+    "settings": "設定",
+    "leaderboard": "ランキング"
+  },
+  "game": {
+    "score": "スコア",
+    "best": "ベスト",
+    "level": "レベル"
+  }
+}

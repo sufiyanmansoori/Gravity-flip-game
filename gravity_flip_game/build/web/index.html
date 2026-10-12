@@ -1,0 +1,1443 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- =========================================================
+       GRAVITY FLIP
+       Production Flutter Web Entry Point
+       ========================================================= -->
+
+    <base href="/" />
+
+    <!-- =========================================================
+       CORE DOCUMENT META
+       ========================================================= -->
+
+    <meta charset="UTF-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <meta
+      name="viewport"
+      content="
+      width=device-width,
+      initial-scale=1.0,
+      maximum-scale=1.0,
+      minimum-scale=1.0,
+      user-scalable=no,
+      viewport-fit=cover
+    "
+    />
+
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+    <meta name="color-scheme" content="dark" />
+
+    <meta name="theme-color" content="#070B14" />
+
+    <!-- =========================================================
+       SEO
+       ========================================================= -->
+
+    <meta
+      name="description"
+      content="Gravity Flip is a fast-paced physics puzzle game where you flip gravity, avoid obstacles and survive as long as possible."
+    />
+
+    <meta
+      name="keywords"
+      content="
+      Gravity Flip,
+      Gravity Flip Game,
+      Flutter Game,
+      Physics Game,
+      Puzzle Game,
+      Arcade Game,
+      Gravity Game,
+      Web Game,
+      Mobile Game
+    "
+    />
+
+    <meta name="author" content="Gravity Flip" />
+
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+
+    <meta name="googlebot" content="index, follow" />
+
+    <!-- =========================================================
+       OPEN GRAPH
+       ========================================================= -->
+
+    <meta property="og:title" content="Gravity Flip" />
+
+    <meta
+      property="og:description"
+      content="Flip gravity. Dodge obstacles. Survive."
+    />
+
+    <meta property="og:type" content="website" />
+
+    <meta property="og:site_name" content="Gravity Flip" />
+
+    <meta property="og:image" content="icons/Icon-512.png" />
+
+    <!-- Replace with your real production URL -->
+    <meta property="og:url" content="https://your-production-domain.com/" />
+
+    <!-- =========================================================
+       TWITTER / X
+       ========================================================= -->
+
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <meta name="twitter:title" content="Gravity Flip" />
+
+    <meta
+      name="twitter:description"
+      content="Flip gravity. Dodge obstacles. Survive."
+    />
+
+    <meta name="twitter:image" content="icons/Icon-512.png" />
+
+    <!-- =========================================================
+       APPLE / IOS
+       ========================================================= -->
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+
+    <meta name="apple-mobile-web-app-title" content="Gravity Flip" />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/Icon-192.png" />
+
+    <link rel="apple-touch-icon" sizes="192x192" href="icons/Icon-192.png" />
+
+    <link rel="apple-touch-icon" sizes="512x512" href="icons/Icon-512.png" />
+
+    <!-- =========================================================
+       FAVICON
+       ========================================================= -->
+
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png" />
+
+    <link rel="shortcut icon" type="image/png" href="favicon.png" />
+
+    <!-- =========================================================
+       PWA
+       ========================================================= -->
+
+    <link rel="manifest" href="manifest.json" />
+
+    <!-- =========================================================
+       PERFORMANCE HINTS
+       ========================================================= -->
+
+    <link rel="preconnect" href="/" crossorigin />
+
+    <!-- =========================================================
+       TITLE
+       ========================================================= -->
+
+    <title>Gravity Flip</title>
+
+    <!-- =========================================================
+       GLOBAL LOADER STYLES
+       ========================================================= -->
+
+    <style>
+      /* ---------------------------------------------------------
+       CSS VARIABLES
+       --------------------------------------------------------- */
+
+      :root {
+        --gf-bg: #070b14;
+
+        --gf-bg-soft: #0a1020;
+
+        --gf-primary: #6c4bff;
+
+        --gf-primary-light: #927aff;
+
+        --gf-secondary: #00d9ff;
+
+        --gf-text: #ffffff;
+
+        --gf-text-soft: rgba(255, 255, 255, 0.68);
+
+        --gf-text-muted: rgba(255, 255, 255, 0.42);
+
+        --gf-border: rgba(255, 255, 255, 0.1);
+
+        --gf-glass: rgba(255, 255, 255, 0.045);
+
+        --gf-success: #35e39a;
+
+        --gf-warning: #ffb84d;
+
+        --gf-danger: #ff5f6d;
+
+        --gf-radius: 22px;
+
+        --gf-shadow: 0 25px 80px rgba(0, 0, 0, 0.45);
+
+        --gf-ease: cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      /* ---------------------------------------------------------
+       RESET
+       --------------------------------------------------------- */
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      html,
+      body {
+        width: 100%;
+
+        height: 100%;
+
+        margin: 0;
+
+        padding: 0;
+      }
+
+      html {
+        background: var(--gf-bg);
+
+        overflow: hidden;
+      }
+
+      body {
+        position: relative;
+
+        background: var(--gf-bg);
+
+        color: var(--gf-text);
+
+        font-family:
+          Inter,
+          ui-sans-serif,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          Helvetica,
+          Arial,
+          sans-serif;
+
+        overflow: hidden;
+
+        overscroll-behavior: none;
+
+        -webkit-font-smoothing: antialiased;
+
+        text-rendering: optimizeLegibility;
+      }
+
+      /* ---------------------------------------------------------
+       LOADER ROOT
+       --------------------------------------------------------- */
+
+      #gravity-loader {
+        position: fixed;
+
+        inset: 0;
+
+        z-index: 999999;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        width: 100%;
+
+        min-height: 100vh;
+
+        min-height: 100dvh;
+
+        padding: 24px;
+
+        overflow: hidden;
+
+        background:
+          radial-gradient(
+            circle at 50% 40%,
+            rgba(108, 75, 255, 0.13),
+            transparent 32%
+          ),
+          radial-gradient(
+            circle at 20% 80%,
+            rgba(0, 217, 255, 0.07),
+            transparent 28%
+          ),
+          linear-gradient(145deg, #050810 0%, #070b14 45%, #0a1020 100%);
+
+        opacity: 1;
+
+        visibility: visible;
+
+        transition:
+          opacity 650ms var(--gf-ease),
+          visibility 650ms var(--gf-ease);
+      }
+
+      #gravity-loader.loaded {
+        opacity: 0;
+
+        visibility: hidden;
+
+        pointer-events: none;
+      }
+
+      /* ---------------------------------------------------------
+       BACKGROUND PARTICLES
+       --------------------------------------------------------- */
+
+      .gf-background {
+        position: absolute;
+
+        inset: 0;
+
+        overflow: hidden;
+
+        pointer-events: none;
+      }
+
+      .gf-orb {
+        position: absolute;
+
+        border-radius: 50%;
+
+        filter: blur(70px);
+
+        opacity: 0.22;
+
+        animation: orbFloat 8s ease-in-out infinite;
+      }
+
+      .gf-orb-one {
+        width: 260px;
+
+        height: 260px;
+
+        top: -90px;
+
+        left: -90px;
+
+        background: var(--gf-primary);
+      }
+
+      .gf-orb-two {
+        width: 220px;
+
+        height: 220px;
+
+        right: -80px;
+
+        bottom: -60px;
+
+        background: var(--gf-secondary);
+
+        animation-delay: -3s;
+      }
+
+      .gf-orb-three {
+        width: 140px;
+
+        height: 140px;
+
+        top: 42%;
+
+        left: 70%;
+
+        background: #8c52ff;
+
+        opacity: 0.12;
+
+        animation-delay: -5s;
+      }
+
+      @keyframes orbFloat {
+        0%,
+        100% {
+          transform: translate3d(0, 0, 0) scale(1);
+        }
+
+        50% {
+          transform: translate3d(20px, -25px, 0) scale(1.08);
+        }
+      }
+
+      /* ---------------------------------------------------------
+       GRID
+       --------------------------------------------------------- */
+
+      .gf-grid {
+        position: absolute;
+
+        inset: 0;
+
+        opacity: 0.08;
+
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+
+        background-size: 44px 44px;
+
+        mask-image: radial-gradient(
+          ellipse at center,
+          black 10%,
+          transparent 72%
+        );
+      }
+
+      /* ---------------------------------------------------------
+       MAIN LOADER CARD
+       --------------------------------------------------------- */
+
+      .gf-loader-card {
+        position: relative;
+
+        z-index: 5;
+
+        width: min(440px, 100%);
+
+        padding: 38px 30px 30px;
+
+        border: 1px solid var(--gf-border);
+
+        border-radius: var(--gf-radius);
+
+        background: linear-gradient(
+          145deg,
+          rgba(255, 255, 255, 0.075),
+          rgba(255, 255, 255, 0.025)
+        );
+
+        box-shadow: var(--gf-shadow);
+
+        backdrop-filter: blur(22px);
+
+        -webkit-backdrop-filter: blur(22px);
+
+        text-align: center;
+
+        animation: cardEnter 800ms var(--gf-ease) both;
+      }
+
+      @keyframes cardEnter {
+        from {
+          opacity: 0;
+
+          transform: translateY(20px) scale(0.97);
+        }
+
+        to {
+          opacity: 1;
+
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      /* ---------------------------------------------------------
+       GAME ICON
+       --------------------------------------------------------- */
+
+      .gf-logo {
+        position: relative;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        width: 92px;
+
+        height: 92px;
+
+        margin: 0 auto 22px;
+
+        border: 1px solid rgba(255, 255, 255, 0.14);
+
+        border-radius: 26px;
+
+        background: linear-gradient(
+          145deg,
+          rgba(108, 75, 255, 0.3),
+          rgba(0, 217, 255, 0.1)
+        );
+
+        box-shadow:
+          0 0 55px rgba(108, 75, 255, 0.24),
+          inset 0 0 30px rgba(255, 255, 255, 0.05);
+
+        overflow: hidden;
+      }
+
+      .gf-logo::before {
+        content: "";
+
+        position: absolute;
+
+        inset: -40%;
+
+        background: conic-gradient(
+          transparent,
+          rgba(255, 255, 255, 0.28),
+          transparent 30%
+        );
+
+        animation: logoRotate 3s linear infinite;
+      }
+
+      .gf-logo-symbol {
+        position: relative;
+
+        z-index: 2;
+
+        font-size: 42px;
+
+        font-weight: 900;
+
+        line-height: 1;
+
+        color: white;
+
+        text-shadow: 0 0 22px rgba(108, 75, 255, 0.9);
+      }
+
+      @keyframes logoRotate {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* ---------------------------------------------------------
+       TITLE
+       --------------------------------------------------------- */
+
+      .gf-title {
+        margin: 0;
+
+        font-size: clamp(26px, 6vw, 34px);
+
+        line-height: 1.1;
+
+        font-weight: 800;
+
+        letter-spacing: -0.04em;
+
+        background: linear-gradient(100deg, #ffffff, #c7bfff, #8eefff);
+
+        background-clip: text;
+
+        color: transparent;
+      }
+
+      .gf-subtitle {
+        margin: 9px 0 28px;
+
+        color: var(--gf-text-soft);
+
+        font-size: 14px;
+
+        line-height: 1.5;
+      }
+
+      /* ---------------------------------------------------------
+       CIRCULAR PROGRESS
+       --------------------------------------------------------- */
+
+      .gf-progress-wrapper {
+        position: relative;
+
+        width: 150px;
+
+        height: 150px;
+
+        margin: 0 auto 26px;
+      }
+
+      .gf-progress-svg {
+        width: 150px;
+
+        height: 150px;
+
+        transform: rotate(-90deg);
+      }
+
+      .gf-progress-track {
+        fill: none;
+
+        stroke: rgba(255, 255, 255, 0.08);
+
+        stroke-width: 7;
+      }
+
+      .gf-progress-bar {
+        fill: none;
+
+        stroke: url(#gfGradient);
+
+        stroke-width: 7;
+
+        stroke-linecap: round;
+
+        stroke-dasharray: 427;
+
+        stroke-dashoffset: 427;
+
+        transition: stroke-dashoffset 450ms ease;
+
+        filter: drop-shadow(0 0 7px rgba(108, 75, 255, 0.7));
+      }
+
+      .gf-progress-center {
+        position: absolute;
+
+        inset: 0;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+      }
+
+      .gf-percent {
+        font-size: 29px;
+
+        font-weight: 800;
+
+        letter-spacing: -0.04em;
+      }
+
+      .gf-percent-symbol {
+        font-size: 14px;
+
+        color: var(--gf-text-muted);
+
+        margin-left: 2px;
+      }
+
+      .gf-progress-label {
+        margin-top: 2px;
+
+        font-size: 10px;
+
+        text-transform: uppercase;
+
+        letter-spacing: 0.14em;
+
+        color: var(--gf-text-muted);
+      }
+
+      /* ---------------------------------------------------------
+       STATUS
+       --------------------------------------------------------- */
+
+      .gf-status {
+        min-height: 22px;
+
+        color: var(--gf-text-soft);
+
+        font-size: 13px;
+
+        letter-spacing: 0.01em;
+
+        transition: opacity 250ms ease;
+      }
+
+      .gf-status strong {
+        color: white;
+
+        font-weight: 600;
+      }
+
+      /* ---------------------------------------------------------
+       PROGRESS LINE
+       --------------------------------------------------------- */
+
+      .gf-line {
+        position: relative;
+
+        width: 100%;
+
+        height: 5px;
+
+        margin: 20px 0 15px;
+
+        border-radius: 99px;
+
+        overflow: hidden;
+
+        background: rgba(255, 255, 255, 0.07);
+      }
+
+      .gf-line-progress {
+        width: 0%;
+
+        height: 100%;
+
+        border-radius: inherit;
+
+        background: linear-gradient(
+          90deg,
+          var(--gf-primary),
+          var(--gf-secondary)
+        );
+
+        box-shadow: 0 0 16px rgba(108, 75, 255, 0.65);
+
+        transition: width 450ms ease;
+      }
+
+      /* ---------------------------------------------------------
+       BOTTOM INFORMATION
+       --------------------------------------------------------- */
+
+      .gf-info-row {
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        gap: 10px;
+
+        color: var(--gf-text-muted);
+
+        font-size: 11px;
+      }
+
+      .gf-connection {
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 7px;
+      }
+
+      .gf-dot {
+        width: 7px;
+
+        height: 7px;
+
+        border-radius: 50%;
+
+        background: var(--gf-success);
+
+        box-shadow: 0 0 10px currentColor;
+      }
+
+      .gf-dot.offline {
+        background: var(--gf-danger);
+      }
+
+      .gf-time {
+        font-variant-numeric: tabular-nums;
+      }
+
+      /* ---------------------------------------------------------
+       ERROR / RECOVERY
+       --------------------------------------------------------- */
+
+      #gf-error {
+        display: none;
+
+        margin-top: 20px;
+
+        padding: 13px;
+
+        border: 1px solid rgba(255, 95, 109, 0.22);
+
+        border-radius: 13px;
+
+        background: rgba(255, 95, 109, 0.07);
+
+        color: rgba(255, 255, 255, 0.75);
+
+        font-size: 12px;
+
+        line-height: 1.5;
+      }
+
+      #gf-error.visible {
+        display: block;
+      }
+
+      .gf-retry {
+        margin-top: 12px;
+
+        min-height: 42px;
+
+        padding: 0 18px;
+
+        border: 1px solid rgba(255, 255, 255, 0.12);
+
+        border-radius: 11px;
+
+        background: rgba(255, 255, 255, 0.07);
+
+        color: white;
+
+        font: inherit;
+
+        font-size: 12px;
+
+        font-weight: 600;
+
+        cursor: pointer;
+
+        transition:
+          transform 160ms ease,
+          background 160ms ease;
+      }
+
+      .gf-retry:hover {
+        background: rgba(255, 255, 255, 0.12);
+
+        transform: translateY(-1px);
+      }
+
+      .gf-retry:active {
+        transform: translateY(0) scale(0.98);
+      }
+
+      /* ---------------------------------------------------------
+       ACCESSIBILITY
+       --------------------------------------------------------- */
+
+      .gf-sr-only {
+        position: absolute;
+
+        width: 1px;
+
+        height: 1px;
+
+        padding: 0;
+
+        margin: -1px;
+
+        overflow: hidden;
+
+        clip: rect(0, 0, 0, 0);
+
+        white-space: nowrap;
+
+        border: 0;
+      }
+
+      /* ---------------------------------------------------------
+       SMALL DEVICES
+       --------------------------------------------------------- */
+
+      @media (max-width: 480px) {
+        #gravity-loader {
+          padding: 16px;
+        }
+
+        .gf-loader-card {
+          padding: 30px 20px 22px;
+
+          border-radius: 19px;
+        }
+
+        .gf-logo {
+          width: 78px;
+
+          height: 78px;
+
+          border-radius: 22px;
+        }
+
+        .gf-logo-symbol {
+          font-size: 36px;
+        }
+
+        .gf-progress-wrapper {
+          transform: scale(0.92);
+
+          margin-top: -4px;
+
+          margin-bottom: 20px;
+        }
+      }
+
+      /* ---------------------------------------------------------
+       LANDSCAPE MOBILE
+       --------------------------------------------------------- */
+
+      @media (max-height: 600px) and (orientation: landscape) {
+        .gf-loader-card {
+          display: grid;
+
+          grid-template-columns: 120px 1fr;
+
+          column-gap: 22px;
+
+          align-items: center;
+
+          padding: 20px;
+        }
+
+        .gf-logo {
+          grid-row: span 4;
+
+          margin: 0 auto;
+        }
+
+        .gf-progress-wrapper {
+          width: 110px;
+
+          height: 110px;
+
+          margin: 0 auto;
+
+          transform: scale(0.75);
+        }
+
+        .gf-progress-svg {
+          width: 110px;
+
+          height: 110px;
+        }
+
+        .gf-subtitle {
+          margin: 5px 0 10px;
+        }
+
+        .gf-line {
+          margin: 10px 0;
+        }
+      }
+
+      /* ---------------------------------------------------------
+       REDUCED MOTION
+       --------------------------------------------------------- */
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+
+          animation-iteration-count: 1 !important;
+
+          scroll-behavior: auto !important;
+
+          transition-duration: 0.01ms !important;
+        }
+      }
+
+      /* ---------------------------------------------------------
+       HIGH CONTRAST
+       --------------------------------------------------------- */
+
+      @media (prefers-contrast: more) {
+        .gf-loader-card {
+          border-color: rgba(255, 255, 255, 0.28);
+        }
+
+        .gf-status,
+        .gf-subtitle {
+          color: rgba(255, 255, 255, 0.88);
+        }
+      }
+    </style>
+
+    <!-- =========================================================
+       FLUTTER BOOTSTRAP
+       ========================================================= -->
+
+    <script src="flutter_bootstrap.js" async></script>
+  </head>
+
+  <body>
+    <!-- =========================================================
+       LOADING SCREEN
+       ========================================================= -->
+
+    <div
+      id="gravity-loader"
+      role="status"
+      aria-live="polite"
+      aria-label="Loading Gravity Flip"
+    >
+      <!-- Background -->
+      <div class="gf-background" aria-hidden="true">
+        <div class="gf-grid"></div>
+
+        <div class="gf-orb gf-orb-one"></div>
+
+        <div class="gf-orb gf-orb-two"></div>
+
+        <div class="gf-orb gf-orb-three"></div>
+      </div>
+
+      <!-- Main Card -->
+      <main class="gf-loader-card">
+        <!-- Logo -->
+        <div class="gf-logo" aria-hidden="true">
+          <div class="gf-logo-symbol">↕</div>
+        </div>
+
+        <!-- Title -->
+        <h1 class="gf-title">Gravity Flip</h1>
+
+        <p class="gf-subtitle">Flip gravity. Dodge obstacles. Survive.</p>
+
+        <!-- Circular Progress -->
+        <div class="gf-progress-wrapper" aria-hidden="true">
+          <svg class="gf-progress-svg" viewBox="0 0 150 150">
+            <defs>
+              <linearGradient
+                id="gfGradient"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="100%"
+              >
+                <stop offset="0%" stop-color="#6C4BFF" />
+
+                <stop offset="100%" stop-color="#00D9FF" />
+              </linearGradient>
+            </defs>
+
+            <circle class="gf-progress-track" cx="75" cy="75" r="68"></circle>
+
+            <circle
+              id="gf-progress-circle"
+              class="gf-progress-bar"
+              cx="75"
+              cy="75"
+              r="68"
+            ></circle>
+          </svg>
+
+          <div class="gf-progress-center">
+            <div>
+              <span id="gf-percent" class="gf-percent"> 0 </span>
+
+              <span class="gf-percent-symbol"> % </span>
+            </div>
+
+            <div id="gf-progress-label" class="gf-progress-label">STARTING</div>
+          </div>
+        </div>
+
+        <!-- Status -->
+        <div id="gf-status" class="gf-status">Initializing game engine...</div>
+
+        <!-- Horizontal Progress -->
+        <div class="gf-line" aria-hidden="true">
+          <div id="gf-line-progress" class="gf-line-progress"></div>
+        </div>
+
+        <!-- Information -->
+        <div class="gf-info-row">
+          <div class="gf-connection">
+            <span id="gf-dot" class="gf-dot"></span>
+
+            <span id="gf-network"> Online </span>
+          </div>
+
+          <div id="gf-time" class="gf-time">0.0s</div>
+        </div>
+
+        <!-- Error -->
+        <div id="gf-error">
+          <div>The game is taking longer than expected to start.</div>
+
+          <button id="gf-retry" class="gf-retry" type="button">
+            Reload Game
+          </button>
+        </div>
+
+        <!-- Screen-reader information -->
+        <span id="gf-accessibility-status" class="gf-sr-only">
+          Gravity Flip is loading.
+        </span>
+      </main>
+    </div>
+
+    <!-- =========================================================
+       FLUTTER / LOADER LOGIC
+       ========================================================= -->
+
+    <script>
+      (function () {
+        "use strict";
+
+        /* -------------------------------------------------------
+         ELEMENTS
+         ------------------------------------------------------- */
+
+        const loader = document.getElementById("gravity-loader");
+
+        const circle = document.getElementById("gf-progress-circle");
+
+        const percentElement = document.getElementById("gf-percent");
+
+        const labelElement = document.getElementById("gf-progress-label");
+
+        const statusElement = document.getElementById("gf-status");
+
+        const lineElement = document.getElementById("gf-line-progress");
+
+        const networkElement = document.getElementById("gf-network");
+
+        const networkDot = document.getElementById("gf-dot");
+
+        const timeElement = document.getElementById("gf-time");
+
+        const errorElement = document.getElementById("gf-error");
+
+        const retryButton = document.getElementById("gf-retry");
+
+        const accessibilityStatus = document.getElementById(
+          "gf-accessibility-status",
+        );
+
+        /* -------------------------------------------------------
+         STATE
+         ------------------------------------------------------- */
+
+        const CIRCUMFERENCE = 2 * Math.PI * 68;
+
+        let currentProgress = 0;
+
+        let targetProgress = 0;
+
+        let flutterReady = false;
+
+        let hasStarted = false;
+
+        let errorShown = false;
+
+        let startTime = performance.now();
+
+        /* -------------------------------------------------------
+         INITIALIZE CIRCLE
+         ------------------------------------------------------- */
+
+        if (circle) {
+          circle.style.strokeDasharray = CIRCUMFERENCE;
+
+          circle.style.strokeDashoffset = CIRCUMFERENCE;
+        }
+
+        /* -------------------------------------------------------
+         PROGRESS UPDATE
+         ------------------------------------------------------- */
+
+        function setProgress(value, label, message) {
+          value = Math.max(0, Math.min(100, Number(value) || 0));
+
+          targetProgress = value;
+
+          if (label) {
+            labelElement.textContent = label;
+          }
+
+          if (message) {
+            statusElement.textContent = message;
+
+            accessibilityStatus.textContent = message;
+          }
+        }
+
+        /* -------------------------------------------------------
+         ANIMATED PROGRESS
+         ------------------------------------------------------- */
+
+        function animateProgress() {
+          const difference = targetProgress - currentProgress;
+
+          if (Math.abs(difference) < 0.05) {
+            currentProgress = targetProgress;
+          } else {
+            currentProgress += difference * 0.08;
+          }
+
+          const rounded = Math.round(currentProgress);
+
+          if (percentElement) {
+            percentElement.textContent = rounded;
+          }
+
+          if (lineElement) {
+            lineElement.style.width = rounded + "%";
+          }
+
+          if (circle) {
+            circle.style.strokeDashoffset =
+              CIRCUMFERENCE - (CIRCUMFERENCE * currentProgress) / 100;
+          }
+
+          requestAnimationFrame(animateProgress);
+        }
+
+        animateProgress();
+
+        /* -------------------------------------------------------
+         LOADING PHASES
+         ------------------------------------------------------- */
+
+        function runInitialPhases() {
+          setProgress(8, "STARTING", "Preparing Gravity Flip...");
+
+          setTimeout(function () {
+            if (flutterReady) {
+              return;
+            }
+
+            setProgress(18, "ENGINE", "Initializing Flutter engine...");
+          }, 500);
+
+          setTimeout(function () {
+            if (flutterReady) {
+              return;
+            }
+
+            setProgress(30, "LOADING", "Loading game resources...");
+          }, 1200);
+
+          setTimeout(function () {
+            if (flutterReady) {
+              return;
+            }
+
+            setProgress(43, "ASSETS", "Preparing game assets...");
+          }, 2200);
+
+          setTimeout(function () {
+            if (flutterReady) {
+              return;
+            }
+
+            setProgress(56, "RUNTIME", "Starting game runtime...");
+          }, 3500);
+
+          setTimeout(function () {
+            if (flutterReady) {
+              return;
+            }
+
+            setProgress(68, "ALMOST", "Finalizing game startup...");
+          }, 5200);
+
+          setTimeout(function () {
+            if (flutterReady) {
+              return;
+            }
+
+            setProgress(78, "WAITING", "Waiting for the game engine...");
+          }, 7500);
+        }
+
+        /* -------------------------------------------------------
+         NETWORK STATUS
+         ------------------------------------------------------- */
+
+        function updateNetworkStatus() {
+          const online = navigator.onLine;
+
+          if (online) {
+            networkElement.textContent = "Online";
+
+            networkDot.classList.remove("offline");
+          } else {
+            networkElement.textContent = "Offline";
+
+            networkDot.classList.add("offline");
+
+            if (!flutterReady) {
+              statusElement.textContent = "Waiting for network connection...";
+            }
+          }
+        }
+
+        window.addEventListener("online", updateNetworkStatus);
+
+        window.addEventListener("offline", updateNetworkStatus);
+
+        updateNetworkStatus();
+
+        /* -------------------------------------------------------
+         ELAPSED TIME
+         ------------------------------------------------------- */
+
+        function updateTimer() {
+          if (flutterReady) {
+            return;
+          }
+
+          const elapsed = (performance.now() - startTime) / 1000;
+
+          timeElement.textContent = elapsed.toFixed(1) + "s";
+
+          requestAnimationFrame(updateTimer);
+        }
+
+        updateTimer();
+
+        /* -------------------------------------------------------
+         FLUTTER FIRST FRAME
+         ------------------------------------------------------- */
+
+        window.addEventListener(
+          "flutter-first-frame",
+          function () {
+            flutterReady = true;
+
+            hasStarted = true;
+
+            errorShown = false;
+
+            setProgress(100, "READY", "Gravity Flip is ready!");
+
+            /*
+             * Give Flutter one frame to paint
+             * before removing the loader.
+             */
+
+            setTimeout(function () {
+              loader.classList.add("loaded");
+            }, 180);
+
+            /*
+             * Completely remove loader
+             * after fade animation.
+             */
+
+            setTimeout(function () {
+              if (loader) {
+                loader.remove();
+              }
+            }, 900);
+          },
+          {
+            once: true,
+          },
+        );
+
+        /* -------------------------------------------------------
+         LONG STARTUP DETECTION
+         ------------------------------------------------------- */
+
+        setTimeout(function () {
+          if (!flutterReady && !errorShown) {
+            errorShown = true;
+
+            errorElement.classList.add("visible");
+
+            statusElement.textContent =
+              "Startup is taking longer than expected.";
+
+            labelElement.textContent = "PLEASE WAIT";
+          }
+        }, 15000);
+
+        /* -------------------------------------------------------
+         HARD STARTUP WARNING
+         ------------------------------------------------------- */
+
+        setTimeout(function () {
+          if (!flutterReady) {
+            setProgress(
+              85,
+              "LOADING",
+              "Still loading. Please keep this tab open...",
+            );
+          }
+        }, 20000);
+
+        /* -------------------------------------------------------
+         RETRY
+         ------------------------------------------------------- */
+
+        retryButton.addEventListener("click", function () {
+          retryButton.disabled = true;
+
+          retryButton.textContent = "Reloading...";
+
+          window.location.reload();
+        });
+
+        /* -------------------------------------------------------
+         PAGE VISIBILITY
+         ------------------------------------------------------- */
+
+        document.addEventListener("visibilitychange", function () {
+          if (document.hidden || flutterReady) {
+            return;
+          }
+
+          /*
+           * Browser may pause animation
+           * while tab is hidden.
+           *
+           * Re-check network state
+           * when user returns.
+           */
+
+          updateNetworkStatus();
+        });
+
+        /* -------------------------------------------------------
+         PAGE ERROR MONITORING
+         ------------------------------------------------------- */
+
+        window.addEventListener("error", function (event) {
+          /*
+           * Do not expose technical
+           * stack traces to players.
+           */
+
+          if (!flutterReady && event && event.error) {
+            console.warn("[Gravity Flip] Startup error:", event.error);
+          }
+        });
+
+        /* -------------------------------------------------------
+         UNHANDLED PROMISE REJECTION
+         ------------------------------------------------------- */
+
+        window.addEventListener("unhandledrejection", function (event) {
+          if (!flutterReady && event && event.reason) {
+            console.warn(
+              "[Gravity Flip] Unhandled startup rejection:",
+              event.reason,
+            );
+          }
+        });
+
+        /* -------------------------------------------------------
+         START
+         ------------------------------------------------------- */
+
+        runInitialPhases();
+      })();
+    </script>
+
+    <!-- =========================================================
+       END
+       ========================================================= -->
+  </body>
+</html>

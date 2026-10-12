@@ -1,0 +1,13 @@
+{
+  "appName": "Gravity Flip",
+  "menu": {
+    "play": "Jugar",
+    "settings": "Ajustes",
+    "leaderboard": "Clasificación"
+  },
+  "game": {
+    "score": "Puntuación",
+    "best": "Mejor",
+    "level": "Nivel"
+  }
+}
